@@ -1,0 +1,31 @@
+<% include header.ejs %>
+<body style="font-size:40px;"> 
+    
+    <div class="container"  >
+            <h3 class="text-center" >Register</h3>
+            <% if (errors) { %>
+                <% errors.forEach(function(error){ %>
+                    <p class="danger text-center"><%= error.msg %></p>
+                <% }); %>
+            <% } %>
+        <div class="row form">
+            <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+                    <form  method="POST">
+                        <input type="text"  id="name" name="username" placeholder="Username" required>
+            
+                      <input type="email"  id="email" name="email" placeholder="Enter email" required>
+                      <input type="password"  id="masterPassword" placeholder="Master Password" name= "masterPassword" required>
+                      <input type="password"  id="Password" placeholder="Password" name= "password" required>
+                      <input type="password"  id="Password" placeholder="Confirm Password" name= "confirm" required>
+                
+                            
+            <button type="submit" >Register</button>
+                    </form>
+                    <p class="text-center" style="color:#fff;font-size:20px;">Already have an account login <a style="color:green;padding-left:10px;text-decoration:none;" href="/users/login">now</a></p>
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

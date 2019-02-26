@@ -5,24 +5,40 @@ const flash = require('connect-flash')
 var User = require('../model/user')
 var errors = null
 var error = null;
+var profile = null;
+
 
 router.get('/login',(req,res) => {
     // res.sendFile('login.html', { root:__dirname+"/"+ '../public/components' });
-    res.render('components/login',{error})
+  
+        res.render('components/login',{error})
+    
+    
+})
+router.get('/components/manager',(req,res) => {
+    if(profile)
+    res.render('components/manager',{profile})
+    else {
+        error = "Please login to continue"
+        res.redirect('/users/login')
+    }
+
+    
 })
 router.get('/register',(req,res) => {
     
     res.render('components/register', {errors})
 })
-router.get('/components/manager',(req,res) => {
-    res.render('components/manager')
-})
+// router.get('/components/manager',(req,res) => {
+//     res.render('components/manager')
+// })
 
 router.post('/register', (req,res) => {
    var username = req.body.username;
    var email = req.body.email;
    var password = req.body.password;
    var confirm = req.body.confirm;
+   var masterPassword = req.body.masterPassword;
  
   
      
@@ -40,16 +56,39 @@ router.post('/register', (req,res) => {
         newUser.username =username ;
         newUser.email = email;
         newUser.password = password;
+        newUser.masterPassword = masterPassword;
      User.createUser(newUser,(err,user) => {
        if(err) {
            throw err;
        }
        else {
-        msg = "You are successfully registered login now"
-       res.redirect('components/login',{msg})
+        error = "You are successfully registered login now"
+        res.redirect('/users/login')
        }
    })
 }
+})
+
+router.post('/components/manager',(req,res) => {
+    var username = profile.username;
+    var github = req.body.github;
+    var linkedIn = req.body.linkedIn;
+    var facebook = req.body.facebook;
+    var twitter = req.body.twitter;
+    User.getUserByUsername(username,(err,user) =>{
+        if (user) {
+            user.passwords.linkedIn = linkedIn;
+            user.passwords.facebook = facebook;
+            user.passwords.github = github;
+            user.passwords.twitter = twitter;
+            profile = user;
+            User.updateUser(user,(err,user) => {
+                if(user) {
+                    res.redirect('manager')
+                }
+            })
+        }
+    })
 })
 
 router.post("/login" , (req,res) => {
@@ -59,6 +98,7 @@ router.post("/login" , (req,res) => {
         if(user) {
             bcrypt.compare(password, user.password, function(err, resp) {
                 if (resp === true) {
+                   profile = user;
                     res.redirect('components/manager')
                 } else {
                     error = "Password not recognized"
@@ -72,7 +112,8 @@ router.post("/login" , (req,res) => {
     })
 })
 router.get('/facebook/callback', (req,res) => {
-    res.render('componets/manager')
+    res.render('components/manager')
 })
+
 
 module.exports = router

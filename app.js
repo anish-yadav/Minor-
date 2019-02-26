@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGODB_URI,{
 })
 app.set('views', __dirname + '/public'); // general config
 app.engine('html', require('ejs').renderFile)
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 app.get('/404', function(req, res, next){
 next();// trigger a 404 since no other middleware will match /404 after this one, and we're not responding here
 });

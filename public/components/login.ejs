@@ -1,0 +1,30 @@
+<% include header.ejs %>
+<body style="font-size: 40px;">
+    <% if (error){ %>
+        <div class="alert alert-primary" role="alert">
+            <%= error %>
+          </div>
+        <% } %>
+    <div class="container" style="padding-top: 10%">
+    <h3 class="text-center" >Login</h3>
+        
+        <div class="row form" >
+            <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+                    <form  method="POST">
+                            
+                                    
+                         <input type="text"  id="username" name="username" placeholder="Username" required>
+                        <input type="password"  id="password" placeholder="Password" name= "password" required>
+
+                            
+                            
+                            <button type="submit" class="login " >Login</button>
+                    </form>
+                    <br>
+                    <p style="color:#fff;font-size:20px;">Don't have an account yet  ? register <a style="color:green" href="/users/register">here</a></p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

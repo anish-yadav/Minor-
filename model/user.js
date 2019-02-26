@@ -14,6 +14,15 @@ var UserSchema = new mongoose.Schema({
     },
     masterPassword : {
         type:String
+    },
+    salt : {
+        type:String
+    },
+    passwords :{
+        facebook: {type:String},
+        github: {type:String},
+        twitter :{type:String},
+        linkedIn : {type:String}
     }
 });
 
@@ -22,11 +31,25 @@ User.createIndexes();
 
 module.exports.createUser = (newUser, callback) =>{
     bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(newUser.password, salt, function(err, hash) {
-          newUser.password = hash;
-          newUser.save(callback);
-        });
+        newUser.salt = salt;
+        // bcrypt.hash(newUser.password, salt, function(err, hash) {
+        //   newUser.password = hash;
+          
+        // });
+        bcrypt.hash(newUser.masterPassword, salt, function(err, hash) {
+            newUser.password = bcrypt.hashSync(newUser.password,salt);
+            newUser.masterPassword = hash; 
+            newUser.save(callback);
+          });
     });
+}
+module.exports.updateUser = (newUser,callback) => {
+    User.findOne({'username':newUser.username},(err,user) => {
+        if (user) {
+            user = newUser;
+            user.save(callback)
+        }
+    })
 }
 
 User.getUserByUsername = (username, callback) =>{

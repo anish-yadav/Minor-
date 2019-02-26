@@ -1,0 +1,20 @@
+<% include ./components/header.ejs %>
+<body>
+    <a id="passwordLink" href="/users/login">Password Manager</a>
+    <!-- <a href="/users/login">Login</a>
+    <a href="/users/register">Register</a> -->
+    <div id="search" class="text-center">
+        <img src="./img/duckduckgo.png" height="200px" alt=""> <br/>
+        <h2 style="color:#fff">DuckDuckGo</h2>
+        <input type="text" name="search" id="searchText"><i onclick="search()" class="fas fa-search"></i>
+    </div>
+    
+</body>
+<script>
+    search = () => {
+        var searchText = document.getElementById("searchText").value;
+        var url = "https://duckduckgo.com/?q="+searchText;
+        window.open(url)
+    }
+</script>
+</html>
