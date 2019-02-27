@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcryptjs')
 const flash = require('connect-flash')
+var CryptoJS = require('crypto-js')
 var User = require('../model/user')
 var errors = null
 var error = null;
@@ -75,14 +76,18 @@ router.post('/components/manager',(req,res) => {
     var linkedIn = req.body.linkedIn;
     var facebook = req.body.facebook;
     var twitter = req.body.twitter;
-    User.getUserByUsername(username,(err,user) =>{
-        if (user) {
-            user.passwords.linkedIn = linkedIn;
-            user.passwords.facebook = facebook;
-            user.passwords.github = github;
-            user.passwords.twitter = twitter;
-            profile = user;
-            User.updateUser(user,(err,user) => {
+    User.getUserByUsername(username,(err,newUser) =>{
+        if (newUser) {
+            newUser.passwords.facebook = CryptoJS.AES.encrypt(facebook,newUser.salt).toString();
+            newUser.passwords.linkedIn = CryptoJS.AES.encrypt(linkedIn,newUser.salt).toString();
+            newUser.passwords.github = CryptoJS.AES.encrypt(github,newUser.salt).toString();
+            newUser.passwords.twitter = CryptoJS.AES.encrypt(twitter,newUser.salt).toString();
+            // user.passwords.linkedIn = linkedIn;
+            // user.passwords.facebook = facebook;
+            // user.passwords.github = github;
+            // user.passwords.twitter = twitter;
+            profile = newUser;
+            User.updateUser(newUser,(err,user) => {
                 if(user) {
                     res.redirect('manager')
                 }

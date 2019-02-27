@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
+var cryptoJs = require('crypto-js')
 
 //Schema 
 var UserSchema = new mongoose.Schema({
@@ -42,6 +43,8 @@ module.exports.createUser = (newUser, callback) =>{
             newUser.save(callback);
           });
     });
+    
+    
 }
 module.exports.updateUser = (newUser,callback) => {
     User.findOne({'username':newUser.username},(err,user) => {

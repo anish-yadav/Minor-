@@ -5,13 +5,14 @@
       <% if (profile) { %>
         <% var user = profile %>      
       <% } %>
+      <script src="../../js/aes.js"></script>
       
       <!-- Modal -->
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Check MasterPassword</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -29,13 +30,13 @@
           </div>
         </div>
       </div>
-
+    <button  data-toggle="modal" id="FbPass" data-target="#exampleModalCenter"></button>
       <!-- Settings Model -->
       <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Set Passwords</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -64,10 +65,7 @@
               </form>
 
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" id="Submit" data-dismiss="modal" class="btn btn-primary" onclick="CheckPassword()">Save changes</button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -79,11 +77,11 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12">
                   <div class="card" style="width: 18rem;">
-                        <img src=".." class="card-img-top" alt="...">
+                        <img src="../../img/fb.png" class="card-img-top image" alt="...">
                     <div class="card-body">
                             <h5 class="card-title">Facebook</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <input class="inputmaster" type="text" name="" id="fbPass" value=""><button class="seePass" onclick="seePasswordFb()" data-toggle="modal" id="FbPass" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></button>
+                            <input class="inputmaster" type="text" name="" id="fbPass" value="" disabled><button class="seePass" onclick="seePasswordFb()"  ><i class="fas fa-eye"></i></button>
                             <!-- <button onclick="seePasswordFb()">See</button> -->
                             <button class="btn btn-success" onclick="fblogin()">Login</button>
                              <button class="btn btn-danger" onclick="fbLogoutUser()">Logout</button>               
@@ -92,12 +90,12 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card" style="width: 18rem;">
-                            <img src=".." class="card-img-top" alt="...">
+                            <img src="../../img/twitter.png" class="card-img-top image" alt="...">
                         <div class="card-body">
                                 <h5 class="card-title">Twitter</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="/users/facebook" class="btn btn-primary">Login</a>
-                                <input class="inputmaster" type="text" name="" id="TwitterPass" value=""><button class="seePass" onclick="seePasswordTwitter()" data-toggle="modal" id="FbPass" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></button>
+                                
+                                <input class="inputmaster" type="text" name="" id="TwitterPass" value="" disabled><button class="seePass" onclick="seePasswordTwitter()" ><i class="fas fa-eye"></i></button>
                             
                                 <button class="btn btn-success" onclick="FB.login()">Login</button>
                                  <button class="btn btn-danger" onclick="fbLogoutUser()">Logout</button>               
@@ -107,12 +105,12 @@
               </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card" style="width: 18rem;">
-                            <img src=".." class="card-img-top" alt="...">
+                            <img src="../../img/github.png" class="card-img-top image" alt="...">
                         <div class="card-body">
                                 <h5 class="card-title">Github</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="/users/facebook" class="btn btn-primary">Login</a>
-                                <input class="inputmaster" type="text" name="" id="GithubPass" value=""><button class="seePass" onclick="seePasswordGithub()" data-toggle="modal" id="FbPass" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></button>
+                                
+                                <input class="inputmaster" type="text" name="" id="GithubPass" value="" disabled><button class="seePass" onclick="seePasswordGithub()" ><i class="fas fa-eye"></i></button>
                                
                                 <button class="btn btn-success" onclick="FB.login()">Login</button>
                                  <button class="btn btn-danger" onclick="githubLogoutUser()">Logout</button>               
@@ -121,12 +119,12 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card" style="width: 18rem;">
-                            <img src=".." class="card-img-top" alt="...">
+                            <img src="../../img/linkedIn.png" class="card-img-top image" alt="...">
                         <div class="card-body">
                                 <h5 class="card-title">LinkedIn</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 <!-- <a href="/users/linkedIn" class="btn btn-primary">Login</a> -->
-                                <input class="inputmaster" type="text" name="" id="LnPass" value=""><button class="seePass" onclick="seePasswordLn()" data-toggle="modal" id="FbPass" data-target="#exampleModalCenter"><i class="fas fa-eye"></i></button>
+                                <input class="inputmaster" type="text" name="" id="LnPass" value="" disabled><button class="seePass" onclick="seePasswordLn()"><i class="fas fa-eye"></i></button>
                             
                                 <button class="btn btn-success" onclick="linkedinlogin()">Login</button>
                                  <button class="btn btn-danger" onclick="linkedinlogoutuser()">Logout</button>               
@@ -142,6 +140,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="../../js/ejs.js"></script>
 <script src="../../js/bCrypt.js"></script>
+
 <script >
 
 
@@ -172,10 +171,15 @@ hashpw(masterPassword,user.salt,result);
 
 }
 
+
 seePasswordFb = () => {
   
      if(visible)  {
       document.getElementById("fbPass").value = user.passwords.facebook;
+      var bytes  = CryptoJS.AES.decrypt(user.passwords.facebook, user.salt);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+      console.log(originalText)
+      document.getElementById("fbPass").value = originalText;
      }
      else {
        var button = document.getElementById("FbPass");
@@ -187,7 +191,11 @@ seePasswordFb = () => {
 seePasswordGithub = () => {
   
   if(visible)  {
-   document.getElementById("GithubPass").value = user.passwords.github;
+
+    var bytes  = CryptoJS.AES.decrypt(user.passwords.github, user.salt);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+   document.getElementById("GithubPass").value = originalText;
+
   }
   else {
     var button = document.getElementById("FbPass");
@@ -199,7 +207,9 @@ seePasswordGithub = () => {
 seePasswordTwitter = () => {
   
   if(visible)  {
-   document.getElementById("TwitterPass").value = user.passwords.twitter;
+    var bytes  = CryptoJS.AES.decrypt(user.passwords.twitter, user.salt);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+   document.getElementById("TwitterPass").value =originalText;
   }
   else {
     var button = document.getElementById("FbPass");
@@ -211,7 +221,9 @@ seePasswordTwitter = () => {
 seePasswordLn = () => {
   
   if(visible)  {
-   document.getElementById("LnPass").value = user.passwords.linkedIn;
+    var bytes  = CryptoJS.AES.decrypt(user.passwords.linkedIn, user.salt);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+   document.getElementById("LnPass").value = originalText;
   }
   else {
     var button = document.getElementById("FbPass");

@@ -92,3 +92,14 @@ Modal */
 .inputmaster {
  border:none;
 }
+.close:hover {
+    position: relative;
+    top:0px;
+    right:0px;
+    background:red;
+}
+
+.image {
+    height:250px;
+    
+}
