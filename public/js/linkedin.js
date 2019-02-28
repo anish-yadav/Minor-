@@ -11,5 +11,8 @@ linkedinlogin = () => {
 
 linkedinlogoutuser = () => {
         IN.User.logout();
+        IN.User.logout();
+        IN.User.logout();
+        IN.User.logout();
         console.log("logged out successfully")
 }

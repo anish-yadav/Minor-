@@ -15,7 +15,7 @@ function fblogin () {
  
   
     function fbLogoutUser() {
-      fblogin()
+      FB.login();
        console.log("started")
          FB.getLoginStatus(function(response) {
             console.log(response)
@@ -25,6 +25,18 @@ function fblogin () {
                 document.location.reload();
                 console.log(response)
             });
+            FB.logout(function(response) {
+              document.location.reload();
+              console.log(response)
+          });
+          FB.logout(function(response) {
+            document.location.reload();
+            console.log(response)
+        });
+        FB.logout(function(response) {
+          document.location.reload();
+          console.log(response)
+      });
         } 
 })
     }
