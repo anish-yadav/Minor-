@@ -160,7 +160,7 @@ CheckPassword =() => {
    
    result =(hash) => {
      visible =( hash == user.masterPassword)
-    console.log(visible)
+   
     if(!visible) {
       alert("Incorrect Password")
     }
@@ -180,14 +180,14 @@ seePasswordFb = () => {
       document.getElementById("fbPass").value = user.passwords.facebook;
       var bytes  = CryptoJS.AES.decrypt(user.passwords.facebook, user.salt);
       var originalText = bytes.toString(CryptoJS.enc.Utf8);
-      console.log(originalText)
+     
       document.getElementById("fbPass").value = originalText;
      }
      else {
        var button = document.getElementById("FbPass");
       
        button.click();
-      //  document.getElementById("fbPass").value = user.passwords.facebook;
+    
      }
 }
 seePasswordGithub = () => {

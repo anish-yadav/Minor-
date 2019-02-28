@@ -30,9 +30,7 @@ router.get('/register',(req,res) => {
     
     res.render('components/register', {errors})
 })
-// router.get('/components/manager',(req,res) => {
-//     res.render('components/manager')
-// })
+
 
 router.post('/register', (req,res) => {
     var user = null;
@@ -124,10 +122,7 @@ router.post('/components/manager',(req,res) => {
             newUser.passwords.linkedIn = CryptoJS.AES.encrypt(linkedIn,newUser.salt).toString();
             newUser.passwords.github = CryptoJS.AES.encrypt(github,newUser.salt).toString();
             newUser.passwords.twitter = CryptoJS.AES.encrypt(twitter,newUser.salt).toString();
-            // user.passwords.linkedIn = linkedIn;
-            // user.passwords.facebook = facebook;
-            // user.passwords.github = github;
-            // user.passwords.twitter = twitter;
+            
             profile = newUser;
             User.updateUser(newUser,(err,user) => {
                 if(user) {
