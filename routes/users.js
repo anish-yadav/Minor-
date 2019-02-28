@@ -10,7 +10,7 @@ var profile = null;
 
 
 router.get('/login',(req,res) => {
-    // res.sendFile('login.html', { root:__dirname+"/"+ '../public/components' });
+   
   
         res.render('components/login',{error})
     
@@ -35,47 +35,57 @@ router.get('/register',(req,res) => {
 // })
 
 router.post('/register', (req,res) => {
+    var user = null;
    var username = req.body.username;
    var email = req.body.email;
    var password = req.body.password;
    var confirm = req.body.confirm;
    var masterPassword = req.body.masterPassword;
- 
+   
   
      
     req.checkBody('username','Please enter a username').notEmpty();
     req.checkBody('email','Please enter an email').notEmpty();
     req.checkBody('email','Please enter a valid email').isEmail();
+    req.checkBody('masterPassword','A Master password must be set').notEmpty();
+    req.checkBody('masterPassword','A Master password must be atleast of length 8').isLength({min:8});
     req.checkBody('password','A password must be set').notEmpty();
     req.checkBody('password','Must be more than 6 characters').isLength({min:6});
     req.checkBody('confirm','Password must match').equals(req.body.password);
     errors = req.validationErrors() ;
-    
-    User.getUserByUsername(username,(err,user) => {
-        if (errors) {
-            res.render('components/register',{errors})
-            
-        } else if ( user) {
-            var  errors = [{}]
-            errors[0].msg = "Username already exists"
-            res.render('components/register',{errors})
-        } else {
-            var newUser = new User();
-            newUser.username =username ;
-            newUser.email = email;
-            newUser.password = password;
-            newUser.masterPassword = masterPassword;
-         User.createUser(newUser,(err,user) => {
-           if(err) {
-               throw err;
-           }
-           else {
-            error = "You are successfully registered login now"
-            res.redirect('/users/login')
-           }
-       })
+
+    if (errors) {
+        res.render('components/register',{errors})
+        
     }
-    })
+     else {
+           User.getUserByUsername(username,(err,user) => {
+               if(user){
+                   console.log("Username already exists")
+                   var errors = [{msg:"Username exists"},{}];
+                   res.render('components/register',{errors})
+               }
+               else
+                {
+           
+        var newUser = new User();
+        newUser.username =username ;
+        newUser.email = email;
+        newUser.password = password;
+        newUser.masterPassword = masterPassword;
+     User.createUser(newUser,(err,user) => {
+       if(err) {
+           throw err;
+       }
+       else {
+        error = "You are successfully registered login now"
+        res.redirect('/users/login')
+       }
+   })
+}
+}) 
+}
+    
   
 })
 
