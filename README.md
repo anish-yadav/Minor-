@@ -7,8 +7,8 @@
  
 1. Clone the repo using *git clone git@github.com:anish-yadav/PasswordManager.git*
 2. move into that repo using *cd PasswordManager*
-3. create a file called *config.json* containing your database address like below
-![config.json](./public/img/config.jnp)
+3. create a file called *config.json* in the config folder containing your database address like below
+![config.json](/public/img/config.jpg)
 4. install all the node modules required using npm i and the start the app *node app.js*
 
 ##Resources Used
