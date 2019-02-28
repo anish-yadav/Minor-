@@ -15,7 +15,7 @@ function fblogin () {
  
   
     function fbLogoutUser() {
-      FB.login();
+      
        console.log("started")
          FB.getLoginStatus(function(response) {
             console.log(response)
