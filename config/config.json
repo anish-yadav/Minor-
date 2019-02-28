@@ -2,33 +2,13 @@
 	"test":{
      "PORT": 3000,
      "MONGODB_URI":"mongodb://localhost:27017/minor1",
-     "secret":"Phenomenal",
-     "FACEBOOK_CALLBACK_URL":"https://9b67568a.ngrok.io/users/facebook/callback",
-     "FACEBOOK_APP_ID":2201767866712886,
-     "FACEBOOK_APP_SECRET":"71b2521b205212a7eebf052a965d295e",
-     "TWITTER_CALLBACK_URL":"https://127.0.0.1:3000/users/twitter/callback",
-     "TWITTER_CONSUMER_KEY": "YrKifSZpFCZXuwvLLmwgGV479"  ,
-     "TWITTER_CONSUMER_SECRET":"zTyHW3oy3GR43XKvD6e6BooCTP4zNoW4bHXokVBwmhnVTyHFSn",
-     "GOOGLE_CONSUMER_KEY": "442961754439-u4k855vr1r4g40q80mef2hoblr9b275i.apps.googleusercontent.com" ,
-     "GITHUB_CLIENT_ID": "sdsdsdsds",
-     "GITHUB_CLIENT_SECRET": "dsdsdsdsss",
-     "GITHUB_CALLBACK_URL":"https://9b67568a.ngrok.io/users/github/callback" ,
-     "GOOGLE_CONSUMER_SECRET":"3gZWSjxC_BEqKZXM5cH2TP04"
+     "secret":"Phenomenal"
+     
 	},
 	"development":{
      "PORT": 3000,
      "MONGODB_URI":"mongodb://localhost:27017/minor1",
-     "secret":"Phenomenal",
-     "FACEBOOK_CALLBACK_URL":"https://47c723fd.ngrok.io/users/facebook/callback",
-     "FACEBOOK_APP_ID":2201767866712886,
-     "FACEBOOK_APP_SECRET":"71b2521b205212a7eebf052a965d295e",
-     "TWITTER_CALLBACK_URL":"https://47c723fd.ngrok.io/users/twitter/callback",
-     "TWITTER_CONSUMER_KEY": "YrKifSZpFCZXuwvLLmwgGV479" ,
-     "TWITTER_CONSUMER_SECRET":"zTyHW3oy3GR43XKvD6e6BooCTP4zNoW4bHXokVBwmhnVTyHFSn",
-     "GITHUB_CLIENT_ID": "93556facc50388d1babf",
-     "GITHUB_CLIENT_SECRET": "874bc019ad2a6aef8e0cd1b6ca1f13093ede42b2",
-     "GITHUB_CALLBACK_URL":"https://11d273f0.ngrok.io/users/github/callback" ,
-     "GOOGLE_CONSUMER_KEY": "442961754439-u4k855vr1r4g40q80mef2hoblr9b275i.apps.googleusercontent.com" ,
-     "GOOGLE_CONSUMER_SECRET":"3gZWSjxC_BEqKZXM5cH2TP04"
+     "secret":"Phenomenal"
+     
 	}
 }
