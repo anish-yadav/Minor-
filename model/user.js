@@ -33,10 +33,7 @@ User.createIndexes();
 module.exports.createUser = (newUser, callback) =>{
     bcrypt.genSalt(10, function(err, salt) {
         newUser.salt = salt;
-        // bcrypt.hash(newUser.password, salt, function(err, hash) {
-        //   newUser.password = hash;
-          
-        // });
+         
         bcrypt.hash(newUser.masterPassword, salt, function(err, hash) {
             newUser.password = bcrypt.hashSync(newUser.password,salt);
             newUser.masterPassword = hash; 

@@ -195,7 +195,7 @@ seePasswordGithub = () => {
   if(visible)  {
 
     var bytes  = CryptoJS.AES.decrypt(user.passwords.github, user.salt);
-      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+    var originalText = bytes.toString(CryptoJS.enc.Utf8);
    document.getElementById("GithubPass").value = originalText;
 
   }

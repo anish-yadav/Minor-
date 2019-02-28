@@ -42,25 +42,11 @@ app.set('view engine', 'ejs');
 app.get('/404', function(req, res, next){
 next();// trigger a 404 since no other middleware will match /404 after this one, and we're not responding here
 });
-// app.get('/403', function(req, res, next){// trigger a 403 error
-//   var err = new Error('not allowed!');
-//   err.status = 403;
-//   next(err);
-// });
-
+ 
 
  app.use('/',routes);
 app.use('/users',users);
 app.use(express.static(__dirname+'/public'));
-
-// app.use(flash())
-// app.use(function(req,res,next){
-//     res.locals.success_msg = req.flash('success_msg');
-//     res.locals.error_msg = req.flash('error_msg');
-//     res.locals.error = req.flash('error');
-//     res.locals.user = req.user || null ;
-//     next();
-//    });
 
 
 var PORT = process.env.PORT || 3000

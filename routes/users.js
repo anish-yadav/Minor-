@@ -55,6 +55,7 @@ router.post('/register', (req,res) => {
     errors = req.validationErrors() ;
 
     if (errors) {
+        console.log(errors) 
         res.render('components/register',{errors})
         
     }
@@ -72,7 +73,7 @@ router.post('/register', (req,res) => {
         newUser.username =username ;
         newUser.email = email;
         newUser.password = password;
-        newUser.masterPassword = masterPassword;
+        newUser.masterPassword = masterPassword;    
      User.createUser(newUser,(err,user) => {
        if(err) {
            throw err;
