@@ -103,3 +103,14 @@ Modal */
     height:250px;
     
 }
+
+#powerOff {
+    top:0px;
+    right:0px;
+    color:red;
+    background:none;
+    border:none;
+    font-size:30px;
+    position:fixed;
+    cursor: pointer;
+}

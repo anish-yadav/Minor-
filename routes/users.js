@@ -49,25 +49,56 @@ router.post('/register', (req,res) => {
     req.checkBody('password','A password must be set').notEmpty();
     req.checkBody('password','Must be more than 6 characters').isLength({min:6});
     req.checkBody('confirm','Password must match').equals(req.body.password);
-    errors = req.validationErrors();
-    if (errors) {
-        res.render('components/register',{errors})
-    } else {
-        var newUser = new User();
-        newUser.username =username ;
-        newUser.email = email;
-        newUser.password = password;
-        newUser.masterPassword = masterPassword;
-     User.createUser(newUser,(err,user) => {
-       if(err) {
-           throw err;
-       }
-       else {
-        error = "You are successfully registered login now"
-        res.redirect('/users/login')
-       }
-   })
-}
+    errors = req.validationErrors() ;
+    
+    User.getUserByUsername(username,(err,user) => {
+        if (errors) {
+            res.render('components/register',{errors})
+            
+        } else if ( user) {
+            var  errors = [{}]
+            errors[0].msg = "Username already exists"
+            res.render('components/register',{errors})
+        } else {
+            var newUser = new User();
+            newUser.username =username ;
+            newUser.email = email;
+            newUser.password = password;
+            newUser.masterPassword = masterPassword;
+         User.createUser(newUser,(err,user) => {
+           if(err) {
+               throw err;
+           }
+           else {
+            error = "You are successfully registered login now"
+            res.redirect('/users/login')
+           }
+       })
+    }
+    })
+  
+})
+
+
+router.post("/login" , (req,res) => {
+    var username = req.body.username;
+    var password = req.body.password;
+    User.getUserByUsername(username,(err,user) => {
+        if(user) {
+            bcrypt.compare(password, user.password, function(err, resp) {
+                if (resp === true) {
+                   profile = user;
+                    res.redirect('components/manager')
+                } else {
+                    error = "Password not recognized"
+                    res.render('components/login',{error})
+                }
+            });
+        } else {
+            error = "Invalid User"
+            res.render('components/login',{error})
+        }
+    })
 })
 
 router.post('/components/manager',(req,res) => {
@@ -96,26 +127,7 @@ router.post('/components/manager',(req,res) => {
     })
 })
 
-router.post("/login" , (req,res) => {
-    var username = req.body.username;
-    var password = req.body.password;
-    User.getUserByUsername(username,(err,user) => {
-        if(user) {
-            bcrypt.compare(password, user.password, function(err, resp) {
-                if (resp === true) {
-                   profile = user;
-                    res.redirect('components/manager')
-                } else {
-                    error = "Password not recognized"
-                    res.render('components/login',{error})
-                }
-            });
-        } else {
-            error = "Invalid User"
-            res.render('components/login',{error})
-        }
-    })
-})
+
 router.get('/facebook/callback', (req,res) => {
     res.render('components/manager')
 })
