@@ -1,9 +1,9 @@
-#Password Manager and login App
+# Password Manager and login App
 
 ![password manager](/public/img/home.png)
 ![password manager](/public/img/manager.png)
 
-##Direction to use 
+## Direction to use 
  
 1. Clone the repo using *git clone git@github.com:anish-yadav/PasswordManager.git*
 2. move into that repo using *cd PasswordManager*
@@ -11,7 +11,7 @@
 ![config.json](/public/img/config.jpg)
 4. install all the node modules required using npm i and the start the app *node app.js*
 
-##Resources Used
+## Resources Used
 
 ### EJS
 
